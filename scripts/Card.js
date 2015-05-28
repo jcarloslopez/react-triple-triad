@@ -16,13 +16,12 @@ var Card = React.createClass({
 	},
 	handleClick:function(e){
 		e.preventDefault();
-		//Unselectable if fixed
-		this.props.onSelectCard(this.props.id);
+		if(!this.props.placed) this.props.onSelectCard(this.props.id);
 	},
 	render() {
 
 		var style = {
-			backgroundColor: Game.getPlayerCard(this.props.id).color,
+			backgroundColor: "#5F7C88",// Mutable color
 			width: 100,
 			float: "left",
 			height: 125,
@@ -31,8 +30,9 @@ var Card = React.createClass({
 			cursor: "pointer"
 		}
 		if(Game.getSelectedCard() === this.props.id) style.border = "1px solid red";
-		else	style.border = undefined;
+		else style.border = undefined;
 
+		if(!this.props.placed) style.margin = 5;
 		return (
 			<div onClick={this.handleClick}  style={style} >
 			< span style = {{	position: "absolute",fontSize: 15,left: "45%",top: 5,color: "#F7F9F4", WebkitUserSelect: "none"}} > {this.props.top} < /span>

@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var Game = require('./GameLogic');
 
 var Tile = React.createClass({
 	getInitialState: function() {
@@ -8,6 +9,7 @@ var Tile = React.createClass({
 	},
 	handleClick: function(e){
 		e.preventDefault();
+		this.props.onTileSelect(this.props.id);
 	},
 	render() {
 		var style = {
