@@ -1,6 +1,4 @@
-# react-kyu
-=====================
-
+# react-triple-triad
 
 ### Usage
 

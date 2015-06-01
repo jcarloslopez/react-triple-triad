@@ -21,7 +21,7 @@ var Card = React.createClass({
 	render() {
 
 		var style = {
-			backgroundColor: "#5F7C88",// Mutable color
+			backgroundColor: this.props.color,// Mutable color
 			width: 100,
 			float: "left",
 			height: 125,
