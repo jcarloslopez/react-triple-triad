@@ -1,3 +1,4 @@
+var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
@@ -5,23 +6,37 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './scripts/index'
+    './index'
   ],
   output: {
-    path: __dirname + '/scripts/',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/scripts/'
+    publicPath: '/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
+    /*alias: {
+      'redux': path.join(__dirname, '..', '..', 'src')
+    },*/
     extensions: ['', '.js']
   },
   module: {
-    loaders: [
-      { test: /\.js$/, loaders: ['react-hot', 'jsx?harmony'], exclude: /node_modules/ },
-    ]
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['react-hot', 'babel'],
+      exclude: /node_modules/,
+      include: __dirname
+    /*}, {
+      test: /\.js$/,
+      loaders: ['babel'],
+      include: path.join(__dirname, '..', '..', 'src')*/
+    }, {
+      test: /\.css?$/,
+      loaders: ['style', 'raw'],
+      include: __dirname
+    }]
   }
 };
