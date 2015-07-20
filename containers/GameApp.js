@@ -18,12 +18,16 @@ export default class GameApp extends Component {
 
   renderChild({ game, dispatch }) {
     const actions = bindActionCreators(GameActions, dispatch);
+    const style = {
+        margin: "0 auto",
+        width: 555
+    };
     return (
-      <div>
+      <div style={style}>
         <Header newGame={actions.generateHands} />
-        <CpuHand cards={game.cpuHand} actions={actions} />
-        <Board cards={game.boardCards} actions={actions} />
-        <PlayerHand cards={game.playerHand} actions={actions} />
+        <CpuHand cards={game.cpuHand} />
+        <Board cards={game.boardCards} actions={actions} turn={game.turn} />
+        <PlayerHand cards={game.playerHand} actions={actions} turn={game.turn} />
       </div>
     );
   }

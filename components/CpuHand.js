@@ -2,12 +2,8 @@ import React, { PropTypes, Component } from 'react';
 
 export default class CpuHand extends Component {
   static propTypes = {
-    cards: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    cards: PropTypes.array.isRequired
   };
-
-  // CPU MOVE?
-
 
   render() {
     return (

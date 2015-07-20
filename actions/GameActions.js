@@ -44,3 +44,28 @@ export function selectCard(id){
     id
   };
 }
+
+export function placeCard(id){
+  return {
+    type: types.PLACE_CARD,
+    id
+  };
+}
+
+export function foo(id){
+  return {
+    type: types.CPU_TURN,
+    id:0
+  };
+}
+
+export function cpuTurn(){
+
+  return (dispatch, getState) => {
+    const { boardCards,cpuHand } = getState();
+
+    //const selectedCpuCardPosition= getCpuCard(boardCards,cpuHand);
+
+    dispatch(foo());
+  };
+}
