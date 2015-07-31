@@ -36,6 +36,7 @@ export default class PlayerHand extends Component {
     }else{
        return  <div style={{backgroundColor: "#d9d9d9",width: 100,height: 125,float: "left",margin: 5,borderRadius:5}} ></div>
     }
+
   }
 
 }

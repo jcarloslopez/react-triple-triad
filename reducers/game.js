@@ -38,12 +38,12 @@ export default function game(state = initialState, action) {
       }
 
     case CPU_TURN:
-      console.log("CPU TURN");
+      console.log(action.id);
       return {
         ...state,
         turn:1,
-        boardCards: state.boardCards.map((place,id) => id == action.id ? state.cpuHand[action.id] : place ),
-        cpuHand: state.cpuHand.map(card => card && card.id == action.id ? null : card )
+        boardCards: state.boardCards.map((place,id) => id == action.selectedBoardPosition ? state.cpuHand[action.selectedCard] : place ),
+        cpuHand: state.cpuHand.map(card => card && card.id == action.selectedCard ? null : card )
       };
 
     default:

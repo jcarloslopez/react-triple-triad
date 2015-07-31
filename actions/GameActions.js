@@ -6,9 +6,9 @@ export function generateHands() {
   const playerHand = [];
   const cpuHand = [];
   const boardCards = [];
-  var size = boardSize;
+  let size = boardSize;
   while(size--) boardCards[size] = null;
-  for (var i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     playerHand.push({
       id: i,
       top: Math.floor((Math.random() * maxCardValue) + 1),
@@ -20,13 +20,12 @@ export function generateHands() {
     });
 
     cpuHand.push({
-      id: boardSize + i,
+      id: i,
       top: Math.floor((Math.random() * maxCardValue) + 1),
       bottom: Math.floor((Math.random() * maxCardValue) + 1),
       left: Math.floor((Math.random() * maxCardValue) + 1),
       right: Math.floor((Math.random() * maxCardValue) + 1),
       color: colors[0],
-      isSelected:false
     });
   }
 
@@ -52,20 +51,29 @@ export function placeCard(id){
   };
 }
 
-export function foo(id){
-  return {
-    type: types.CPU_TURN,
-    id:0
+export function cpuTurn(){
+  return (dispatch, getState) => {
+    const { boardCards,cpuHand } = getState().game;
+
+    const selectedCard = getCpuCard(cpuHand);
+    const selectedBoardPosition = getBoardPosition(selectCard);
+    setTimeout(() => {
+      dispatch({
+        type: types.CPU_TURN,
+        selectedCard,
+        selectedBoardPosition
+      });
+    }, 2000);
+
   };
 }
 
-export function cpuTurn(){
+function getCpuCard(cpuHand){
+  let i = Math.floor((Math.random() * handSize));
+  while(i == -1 || cpuHand[i] == null ) i = Math.floor((Math.random() * handSize));
+  return i;
+}
 
-  return (dispatch, getState) => {
-    const { boardCards,cpuHand } = getState();
-
-    //const selectedCpuCardPosition= getCpuCard(boardCards,cpuHand);
-
-    dispatch(foo());
-  };
+function getBoardPosition(selectedCard){
+  return 6;
 }

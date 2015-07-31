@@ -8,10 +8,9 @@ export default class Board extends Component {
   };
 
   handleClick(e) {
-    const props = this.props;
     if(this.props.turn == 1){
       this.props.actions.placeCard(e.target.id);
-      setTimeout(function(){props.actions.cpuTurn();},2000);
+      this.props.actions.cpuTurn();
     }
   }
 
